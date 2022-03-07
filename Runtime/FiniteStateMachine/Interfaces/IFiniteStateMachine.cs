@@ -8,5 +8,5 @@ public interface IFiniteStateMachine
 {
     //Update state method, called by the actions and updates the current state and
     //passes the arguments to the current state
-    public void UpdateState(IFiniteStateMachine action, List<ResultArguments> arguments);
+    public void UpdateState(AAction action, List<ResultArguments> arguments);
 }

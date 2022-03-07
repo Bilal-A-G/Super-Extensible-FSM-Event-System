@@ -7,17 +7,17 @@ public class State
 {
     //Dictionary containing which actions this state can respond to and what happens
     //when a specific action calls this state
-    List<KeyValuePair<IFiniteStateMachine, IResult>> actionResultList;
+    List<KeyValuePair<AAction, IResult>> actionResultList;
 
     //Passing in a new dictionary of actions and results
-    public State(List<KeyValuePair<IFiniteStateMachine, IResult>> actionResultList)
+    public State(List<KeyValuePair<AAction, IResult>> actionResultList)
     {
         this.actionResultList = actionResultList;
     }
 
     //Execute method, called by the FSM, retuns a bool that the FSM will use to determine
     //wheather to delegate the action downwards or not
-    public bool Execute(IFiniteStateMachine action, List<ResultArguments> arguments)
+    public bool Execute(AAction action, List<ResultArguments> arguments)
     {
         for (int i = 0; i < actionResultList.Count; i++)
         {
