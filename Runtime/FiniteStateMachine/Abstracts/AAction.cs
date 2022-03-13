@@ -6,7 +6,7 @@ using UnityEngine;
 //so the current state can act on it
 public abstract class AAction : MonoBehaviour
 {
-    protected IFiniteStateMachine fsm;
+    protected AFiniteStateMachine fsm;
 
     protected List<ResultArguments> arguments;
 
@@ -16,7 +16,7 @@ public abstract class AAction : MonoBehaviour
     {
         player = transform.parent;
 
-        fsm = player.GetComponentInChildren<IFiniteStateMachine>();
+        fsm = player.GetComponentInChildren<AFiniteStateMachine>();
         arguments = new List<ResultArguments>();
     }
 
