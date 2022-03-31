@@ -27,7 +27,7 @@ public class FiniteStateMachine : MonoBehaviour
                 object[] convertedArguments = new object[arguments.Count];
                 convertedArguments[0] = arguments;
 
-                currentStateLogicType.GetMethod("Execute").Invoke(new Result(), convertedArguments);
+                currentStateLogicType.GetMethod("Execute").Invoke(currentStateLogicType, convertedArguments);
 
                 return;
             }

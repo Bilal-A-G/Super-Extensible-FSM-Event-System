@@ -7,5 +7,5 @@ using UnityEngine;
 public class Result
 {
     //Execute method that takes arguments
-    public virtual void Execute(List<ResultArguments> arguments) { return; }
+    public static void Execute(List<ResultArguments> arguments) { Debug.LogError("Default execute behaviour is undefined"); }
 }
