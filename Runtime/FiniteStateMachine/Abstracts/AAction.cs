@@ -4,9 +4,10 @@ using UnityEngine;
 
 //Interface that denotes something as an action. Actions gather input and sends data to the FSM
 //so the current state can act on it
+
 public abstract class AAction : MonoBehaviour
 {
-    protected AFiniteStateMachine fsm;
+    protected FiniteStateMachine fsm;
 
     protected List<ResultArguments> arguments;
 
@@ -16,7 +17,7 @@ public abstract class AAction : MonoBehaviour
     {
         player = transform.parent;
 
-        fsm = player.GetComponentInChildren<AFiniteStateMachine>();
+        fsm = player.GetComponentInChildren<FiniteStateMachine>();
         arguments = new List<ResultArguments>();
     }
 
