@@ -17,18 +17,11 @@ public class FiniteStateMachine : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < currentState.stateActionResults.Count; i++)
+        for (int i = 0; i < currentState.stateActions.Count; i++)
         {
-            if (action == currentState.stateActionResults[i].action)
+            if (action == currentState.stateActions[i])
             {
-                UnityEditor.MonoScript currentStateLogic = (UnityEditor.MonoScript)currentState.stateActionResults[i].result;
-                System.Type currentStateLogicType = currentStateLogic.GetClass();
-
-                object[] convertedArguments = new object[arguments.Count];
-                convertedArguments[0] = arguments;
-
-                currentStateLogicType.GetMethod("Execute").Invoke(currentStateLogicType, convertedArguments);
-
+                action.Invoke(arguments);
                 return;
             }
         }
@@ -38,6 +31,8 @@ public class FiniteStateMachine : MonoBehaviour
 
     void DelegateToChild(EventObject action, List<ResultArguments> arguments)
     {
+        if (transform.childCount == 0) return;
+
         FiniteStateMachine childStateMachine = transform.GetChild(0).GetComponent<FiniteStateMachine>();
         if(childStateMachine != null)
         {
