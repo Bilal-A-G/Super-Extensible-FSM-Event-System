@@ -1,7 +1,4 @@
 using UnityEditor;
-using UnityEditor.UIElements;
-using UnityEngine.UIElements;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
@@ -16,8 +13,8 @@ public class SerializedDelegateEventPairsDrawer : PropertyDrawer
         var serializedEvents = property.FindPropertyRelative("events");
         var serializedDelegates = property.FindPropertyRelative("serializedDelegates");
 
-        EditorGUI.PropertyField(new Rect(position.x + position.width/2, position.y, position.width/2, position.height), serializedEvents, new GUIContent("Events"));
-        EditorGUI.PropertyField(new Rect(position.x - position.x/2.1f, position.y, position.width/2, position.height), serializedDelegates, new GUIContent("Delegates"));
+        EditorGUI.PropertyField(new Rect(position.x + position.width/2, position.y, position.width/2, position.height), serializedEvents, new GUIContent("Events"), true);
+        EditorGUI.PropertyField(new Rect(position.x - position.x/2.1f, position.y, position.width/2, position.height), serializedDelegates, new GUIContent("Delegates"), true);
 
         EditorGUI.EndProperty();
     }
@@ -64,16 +61,6 @@ public class SerializedDelegateEventPairsDrawer : PropertyDrawer
         }
 
         return EditorGUIUtility.singleLineHeight * (startingLines + greaterLines) + EditorGUIUtility.standardVerticalSpacing * ((startingLines + greaterLines) - 1);
-    }
-
-    void OnEnable()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-        
     }
 }
 
