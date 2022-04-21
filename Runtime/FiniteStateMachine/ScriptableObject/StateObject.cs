@@ -5,23 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New State", menuName = "State Objects")]
 public class StateObject : ScriptableObject
 {
-    public bool consumeInput;
+    public List<EventResultPairs> stateActionResults;
 
-    public List<ActionResultPairs> stateActionResults;
-
-    public List<ActionStatePairs> stateTransitions;
+    public List<EventStatePairs> stateTransitions;
 }
 
 [System.Serializable]
-public struct ActionStatePairs
+public struct EventStatePairs
 {
-    public Object action;
+    public EventObject action;
     public StateObject stateObject;
 }
 
 [System.Serializable]
-public struct ActionResultPairs
+public struct EventResultPairs
 {
-    public Object action;
+    public EventObject action;
     public Object result;
 }

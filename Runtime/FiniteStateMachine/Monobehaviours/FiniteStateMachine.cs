@@ -6,11 +6,11 @@ public class FiniteStateMachine : MonoBehaviour
 {
     public StateObject currentState;
 
-    public void UpdateState(AAction action, List<ResultArguments> arguments)
+    public void UpdateState(EventObject action, List<ResultArguments> arguments)
     {
         for (int i = 0; i < currentState.stateTransitions.Count; i++)
         {
-            if (action.GetType() == ((UnityEditor.MonoScript)currentState.stateTransitions[i].action).GetClass())
+            if (action == currentState.stateTransitions[i].action)
             {
                 currentState = currentState.stateTransitions[i].stateObject;
                 break;
@@ -19,7 +19,7 @@ public class FiniteStateMachine : MonoBehaviour
 
         for (int i = 0; i < currentState.stateActionResults.Count; i++)
         {
-            if (action.GetType() == ((UnityEditor.MonoScript)currentState.stateActionResults[i].action).GetClass())
+            if (action == currentState.stateActionResults[i].action)
             {
                 UnityEditor.MonoScript currentStateLogic = (UnityEditor.MonoScript)currentState.stateActionResults[i].result;
                 System.Type currentStateLogicType = currentStateLogic.GetClass();
@@ -36,7 +36,7 @@ public class FiniteStateMachine : MonoBehaviour
         DelegateToChild(action, arguments);
     }
 
-    void DelegateToChild(AAction action, List<ResultArguments> arguments)
+    void DelegateToChild(EventObject action, List<ResultArguments> arguments)
     {
         FiniteStateMachine childStateMachine = transform.GetChild(0).GetComponent<FiniteStateMachine>();
         if(childStateMachine != null)

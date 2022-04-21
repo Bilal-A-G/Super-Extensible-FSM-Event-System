@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="PropertyContainer" style="height: 19px;">
+        <uie:PropertyField name="Delegate" label="Serialized Delegates" style="width: 49%;" />
+        <uie:PropertyField name="Event" label="Events" style="width: 49%; left: 50%; -unity-text-align: upper-right;" />
+    </ui:VisualElement>
+</ui:UXML>
