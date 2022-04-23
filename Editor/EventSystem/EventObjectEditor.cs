@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using System.IO;
 
 [CustomEditor(typeof(EventObject))]
 public class EventObjectEditor : Editor
@@ -13,7 +14,11 @@ public class EventObjectEditor : Editor
 
     private void OnEnable()
     {
-        customEditor = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Editor/EventSystem/EventObjectTree.uxml");
+        var csScriptPath = AssetDatabase.GUIDToAssetPath("0a79c89479c2ab543965eb1a7013be37");
+        var csFileName = Path.GetFileNameWithoutExtension(csScriptPath);
+        var csDirectory = Path.GetDirectoryName(csScriptPath);
+
+        customEditor = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{csDirectory}/{csFileName}.uxml");
         currentEventObject = (EventObject)target;
     }
 
