@@ -13,12 +13,9 @@ public class ResultArgumentsDrawer : PropertyDrawer
         SerializedProperty stringValue = property.FindPropertyRelative("stringValue");
         SerializedProperty objectValue = property.FindPropertyRelative("objectValue");
 
-        SerializedProperty isCollapsed = property.FindPropertyRelative("isCollapsed");
         SerializedProperty isGroupCollapsed = property.FindPropertyRelative("collapseGroup");
 
-        SerializedProperty tuplexValue = property.FindPropertyRelative("tuplex");
-        SerializedProperty tupleyValue = property.FindPropertyRelative("tupley");
-        SerializedProperty tuplezValue = property.FindPropertyRelative("tuplez");
+        SerializedProperty vectorValue = property.FindPropertyRelative("vectorValue");
 
         if (EditorGUILayout.Foldout(isGroupCollapsed.boolValue, new GUIContent(label)))
         {
@@ -41,28 +38,9 @@ public class ResultArgumentsDrawer : PropertyDrawer
             EditorGUILayout.PropertyField(stringValue, new GUIContent("String value"));
             EditorGUILayout.PropertyField(objectValue, new GUIContent("Object value"));
 
-            if (EditorGUILayout.Foldout(isCollapsed.boolValue, new GUIContent("Vector3 value")))
-            {
-                isCollapsed.boolValue = true;
-            }
-            else
-            {
-                isCollapsed.boolValue = false;
-            }
+            Vector3 inputVector = EditorGUILayout.Vector3Field(new GUIContent("Vector value"), vectorValue.vector3Value);
+            vectorValue.vector3Value = inputVector;
 
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.Space();
-
-            if (isCollapsed.boolValue)
-            {
-                EditorGUILayout.BeginVertical();
-                EditorGUILayout.PropertyField(tuplexValue, new GUIContent("X"));
-                EditorGUILayout.PropertyField(tupleyValue, new GUIContent("Y"));
-                EditorGUILayout.PropertyField(tuplezValue, new GUIContent("Z"));
-                EditorGUILayout.EndVertical();
-            }
-
-            EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndVertical();
         }
 
