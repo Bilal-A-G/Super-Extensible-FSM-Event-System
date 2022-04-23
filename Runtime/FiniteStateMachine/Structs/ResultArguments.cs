@@ -29,12 +29,19 @@ public struct ResultArguments
         this.floatValue = floatValue;
         this.intValue = intValue;
         this.stringValue = stringValue;
-        this.tuplex = vectorValue.x;
-        this.tupley = vectorValue.y;
-        this.tuplez = vectorValue.z;
+        tuplex = vectorValue.x;
+        tupley = vectorValue.y;
+        tuplez = vectorValue.z;
         this.objectValue = objectValue;
 
         isCollapsed = false;
         collapseGroup = false;
+    }
+
+    public void SetVector3Value(Vector3 newValue)
+    {
+        tuplex = newValue.x;
+        tupley = newValue.y;
+        tuplez = newValue.z;
     }
 }
