@@ -1,4 +1,3 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
     <ui:Button text="Raise Event" display-tooltip-when-elided="true" name="InvokeEvent" />
-    <uie:PropertyField name="Arguments" label="Arguments(Editor only)" />
 </ui:UXML>

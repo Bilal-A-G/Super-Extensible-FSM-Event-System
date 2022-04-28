@@ -29,7 +29,7 @@ public class EventListener : MonoBehaviour
         }
     }
 
-    public void OnInvoke(List<ResultArguments> arguments, EventObject callingObject)
+    public void OnInvoke(EventObject callingObject)
     {
         for(int i = 0; i < serializedDelegateEventPairs.Length; i++)
         {
@@ -37,7 +37,7 @@ public class EventListener : MonoBehaviour
             {
                 if(serializedDelegateEventPairs[i].events[v] == callingObject)
                 {
-                    serializedDelegateEventPairs[i].serializedDelegates.Invoke(arguments.ToArray());
+                    serializedDelegateEventPairs[i].serializedDelegates.Invoke();
                 }
             }
         }
@@ -47,12 +47,6 @@ public class EventListener : MonoBehaviour
 [System.Serializable]
 public struct SerializedDelegateEventPairs
 {
-    public ResultArgumentEvent serializedDelegates;
+    public UnityEvent serializedDelegates;
     public List<EventObject> events;
-}
-
-[System.Serializable]
-public class ResultArgumentEvent : UnityEvent<ResultArguments[]>
-{
-
 }

@@ -15,7 +15,7 @@ public class StateTreeObject : ScriptableObject
         currentState = initialState;
     }
 
-    public void UpdateState(EventObject action, List<ResultArguments> arguments)
+    public void UpdateState(EventObject action)
     {
         for(int i = 0; i < currentState.stateTransitions.Count; i++)
         {
@@ -30,13 +30,13 @@ public class StateTreeObject : ScriptableObject
         {
             if (action == currentState.stateActions[i])
             {
-                action.Invoke(arguments);
+                action.Invoke();
                 return;
             }
         }
 
         if(currentState.stateChild == null) return;
 
-        currentState.stateChild.UpdateState(action, arguments);
+        currentState.stateChild.UpdateState(action);
     }
 }

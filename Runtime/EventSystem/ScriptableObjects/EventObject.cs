@@ -6,8 +6,6 @@ using UnityEngine;
 public class EventObject : ScriptableObject
 {
     List<EventListener> subscribedListeners = new List<EventListener>();
-    [SerializeField]
-    List<ResultArguments> argumentsList;
 
     public void Subscribe(EventListener listener)
     {
@@ -25,11 +23,11 @@ public class EventObject : ScriptableObject
         }
     }
 
-    public void Invoke(List<ResultArguments> arguments)
+    public void Invoke()
     {
         for(int i = 0; i < subscribedListeners.Count; i++)
         {
-            subscribedListeners[i].OnInvoke(arguments, this);
+            subscribedListeners[i].OnInvoke(this);
         }
     }
 
@@ -37,7 +35,7 @@ public class EventObject : ScriptableObject
     {
         for (int i = 0; i < subscribedListeners.Count; i++)
         {
-            subscribedListeners[i].OnInvoke(argumentsList, this);
+            subscribedListeners[i].OnInvoke(this);
         }
     }
 }

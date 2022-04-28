@@ -28,9 +28,6 @@ public class EventObjectEditor : Editor
         customEditor.CloneTree(rootVisualElement);
 
         invokeEventButton = rootVisualElement.Q<Button>("InvokeEvent");
-        arguments = rootVisualElement.Q<PropertyField>("Arguments");
-
-        arguments.BindProperty(serializedObject.FindProperty("argumentsList"));
 
         invokeEventButton.clicked += OnEventInvoked;
 
