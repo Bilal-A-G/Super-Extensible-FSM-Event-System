@@ -31,7 +31,7 @@ public class StateTreeObject : ScriptableObject
             if (action == currentState.stateActions[i])
             {
                 action.Invoke(callingObject);
-                return;
+                break;
             }
         }
 
