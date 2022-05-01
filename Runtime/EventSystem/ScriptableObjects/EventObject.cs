@@ -23,11 +23,11 @@ public class EventObject : ScriptableObject
         }
     }
 
-    public void Invoke()
+    public void Invoke(GameObject callingObject)
     {
         for(int i = 0; i < subscribedListeners.Count; i++)
         {
-            subscribedListeners[i].OnInvoke(this);
+            subscribedListeners[i].OnInvoke(this, callingObject);
         }
     }
 
@@ -35,7 +35,7 @@ public class EventObject : ScriptableObject
     {
         for (int i = 0; i < subscribedListeners.Count; i++)
         {
-            subscribedListeners[i].OnInvoke(this);
+            subscribedListeners[i].OnInvoke(this, null);
         }
     }
 }

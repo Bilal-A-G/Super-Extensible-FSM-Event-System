@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class EventListener : MonoBehaviour
 {
     public SerializedDelegateEventPairs[] serializedDelegateEventPairs;
+    public GameObject parentObject;
 
     private void OnEnable()
     {
@@ -29,13 +30,13 @@ public class EventListener : MonoBehaviour
         }
     }
 
-    public void OnInvoke(EventObject callingObject)
+    public void OnInvoke(EventObject callingEvent, GameObject callingObject)
     {
         for(int i = 0; i < serializedDelegateEventPairs.Length; i++)
         {
             for(int v = 0; v < serializedDelegateEventPairs[i].events.Count; v++)
             {
-                if(serializedDelegateEventPairs[i].events[v] == callingObject)
+                if(serializedDelegateEventPairs[i].events[v] == callingEvent && callingObject == parentObject)
                 {
                     serializedDelegateEventPairs[i].serializedDelegates.Invoke();
                 }

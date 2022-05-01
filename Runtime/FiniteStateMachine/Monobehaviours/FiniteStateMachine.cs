@@ -6,5 +6,5 @@ public class FiniteStateMachine : MonoBehaviour
 {
     public StateTreeObject initialState;
 
-    public void UpdateState(EventObject action) => initialState.UpdateState(action);
+    public void UpdateState(EventObject action, GameObject callingObject) => initialState.UpdateState(action, callingObject);
 }
