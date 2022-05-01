@@ -27,7 +27,10 @@ public class EventObject : ScriptableObject
     {
         for(int i = 0; i < subscribedListeners.Count; i++)
         {
-            subscribedListeners[i].OnInvoke(this, callingObject);
+            if(subscribedListeners[i].parentObject == callingObject)
+            {
+                subscribedListeners[i].OnInvoke(this);
+            }
         }
     }
 
@@ -35,7 +38,7 @@ public class EventObject : ScriptableObject
     {
         for (int i = 0; i < subscribedListeners.Count; i++)
         {
-            subscribedListeners[i].OnInvoke(this, null);
+            subscribedListeners[i].OnInvoke(this);
         }
     }
 }
