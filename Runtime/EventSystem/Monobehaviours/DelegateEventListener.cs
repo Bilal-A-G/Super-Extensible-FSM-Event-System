@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventListener : MonoBehaviour
+public class DelegateEventListener : EventListenerBase
 {
     public SerializedDelegateEventPairs[] serializedDelegateEventPairs;
     public GameObject parentObject;
 
-    protected void OnEnable()
+    protected override void SubscribeToEvents()
     {
-        for(int i = 0; i < serializedDelegateEventPairs.Length; i++)
+        for (int i = 0; i < serializedDelegateEventPairs.Length; i++)
         {
-            for(int v = 0; v < serializedDelegateEventPairs[i].events.Count; v++)
+            for (int v = 0; v < serializedDelegateEventPairs[i].events.Count; v++)
             {
                 serializedDelegateEventPairs[i].events[v].Subscribe(this);
             }
         }
     }
 
-    protected void OnDisable()
+    protected override void UnSubscribeFromEvents()
     {
         for (int i = 0; i < serializedDelegateEventPairs.Length; i++)
         {
@@ -30,8 +30,10 @@ public class EventListener : MonoBehaviour
         }
     }
 
-    public void OnInvoke(EventObject callingEvent)
+    public override void OnInvoke(EventObject callingEvent, GameObject callingObject)
     {
+        if (callingObject != parentObject && callingObject != null) return;
+
         for(int i = 0; i < serializedDelegateEventPairs.Length; i++)
         {
             for(int v = 0; v < serializedDelegateEventPairs[i].events.Count; v++)

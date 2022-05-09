@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Event", menuName = "Event Objects")]
 public class EventObject : ScriptableObject
 {
-    List<EventListener> subscribedListeners = new List<EventListener>();
+    List<EventListenerBase> subscribedListeners = new List<EventListenerBase>();
 
-    public void Subscribe(EventListener listener)
+    public void Subscribe(EventListenerBase listener)
     {
         if (!subscribedListeners.Contains(listener))
         {
@@ -15,7 +15,7 @@ public class EventObject : ScriptableObject
         }
     }
 
-    public void UnSubscribe(EventListener listener)
+    public void UnSubscribe(EventListenerBase listener)
     {
         if (subscribedListeners.Contains(listener))
         {
@@ -27,18 +27,9 @@ public class EventObject : ScriptableObject
     {
         for(int i = 0; i < subscribedListeners.Count; i++)
         {
-            if(subscribedListeners[i].parentObject == callingObject)
-            {
-                subscribedListeners[i].OnInvoke(this);
-            }
+            subscribedListeners[i].OnInvoke(this, callingObject);
         }
     }
 
-    public void InvokeInEditor()
-    {
-        for (int i = 0; i < subscribedListeners.Count; i++)
-        {
-            subscribedListeners[i].OnInvoke(this);
-        }
-    }
+    public void InvokeInEditor() => Invoke(null);
 }
