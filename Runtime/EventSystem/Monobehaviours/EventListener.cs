@@ -8,7 +8,7 @@ public class EventListener : MonoBehaviour
     public SerializedDelegateEventPairs[] serializedDelegateEventPairs;
     public GameObject parentObject;
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         for(int i = 0; i < serializedDelegateEventPairs.Length; i++)
         {
@@ -19,7 +19,7 @@ public class EventListener : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         for (int i = 0; i < serializedDelegateEventPairs.Length; i++)
         {
