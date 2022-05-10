@@ -96,8 +96,6 @@ public class EventActionsDrawer : PropertyDrawer
             }
         }
 
-        if (actionsCollapsed && eventsCollapsed) startingLines = 2;
-
 
         if (eventLines >= startingLines - 4 && eventLines > actionLines)
         {
