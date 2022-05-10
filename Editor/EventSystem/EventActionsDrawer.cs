@@ -10,8 +10,6 @@ public class EventActionsDrawer : PropertyDrawer
     float propertyHeight = 20;
     float buttonDistance = 5;
     float scale = 5;
-    bool eventsCollapsed;
-    bool actionsCollapsed;
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
@@ -32,15 +30,6 @@ public class EventActionsDrawer : PropertyDrawer
 
         if (dropdown)
         {
-            if (events)
-            {
-                eventsCollapsed = false;
-            }
-            else
-            {
-                actionsCollapsed = false;
-            }
-
             for (int i = 0; i < list.arraySize; i++)
             {
                 EditorGUI.PropertyField(new Rect(position.x, position.y + i * propertyHeight + propertyHeight, position.width, propertyHeight), list.GetArrayElementAtIndex(i), GUIContent.none);
@@ -56,17 +45,6 @@ public class EventActionsDrawer : PropertyDrawer
                 list.DeleteArrayElementAtIndex(list.arraySize - 1);
             }
         }
-        else
-        {
-            if (events)
-            {
-                eventsCollapsed = true;
-            }
-            else
-            {
-                actionsCollapsed = true;
-            }
-        }
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
@@ -80,20 +58,14 @@ public class EventActionsDrawer : PropertyDrawer
         SerializedProperty events = property.FindPropertyRelative("events");
         SerializedProperty actions = property.FindPropertyRelative("actions");
 
-        if (!actionsCollapsed)
+        for (int i = 0; i < actions.arraySize - 1; i++)
         {
-            for (int i = 0; i < actions.arraySize - 1; i++)
-            {
-                actionLines++;
-            }
+            actionLines++;
         }
 
-        if (!eventsCollapsed)
+        for (int i = 0; i < events.arraySize - 1; i++)
         {
-            for (int i = 0; i < events.arraySize - 1; i++)
-            {
-                eventLines++;
-            }
+            eventLines++;
         }
 
 
