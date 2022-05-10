@@ -28,9 +28,9 @@ public class StateTreeObject : ScriptableObject
 
         for (int i = 0; i < currentState.stateActions.Count; i++)
         {
-            if (action == currentState.stateActions[i])
+            if (action == currentState.stateActions[i].action)
             {
-                action.Invoke(callingObject);
+                currentState.stateActions[i].GetTranslatedEvent().Invoke(callingObject);
                 break;
             }
         }
