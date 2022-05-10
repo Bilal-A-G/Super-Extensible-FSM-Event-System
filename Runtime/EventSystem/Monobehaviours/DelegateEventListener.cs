@@ -42,7 +42,7 @@ public class DelegateEventListener : EventListenerBase
                 {
                     for(int z = 0; z < serializedDelegateEventPairs[i].serializedDelegates.Length; z++)
                     {
-                        serializedDelegateEventPairs[i].serializedDelegates[z].Execute();
+                        serializedDelegateEventPairs[i].serializedDelegates[z].Execute(callingObject);
                     }
                 }
             }

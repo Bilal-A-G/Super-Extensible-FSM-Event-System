@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class ActionBase : ScriptableObject
 {
-    public abstract void Execute();
+    public abstract void Execute(GameObject callingObject);
 }
