@@ -8,7 +8,6 @@ public class EventObjectEditor : Editor
 {
     VisualTreeAsset customEditor;
     Button invokeEventButton;
-    PropertyField arguments;
 
     EventObject currentEventObject;
 
