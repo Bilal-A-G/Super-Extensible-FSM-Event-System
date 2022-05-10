@@ -12,7 +12,7 @@ public class DelegateEventListener : EventListenerBase
     {
         for (int i = 0; i < serializedDelegateEventPairs.Length; i++)
         {
-            for (int v = 0; v < serializedDelegateEventPairs[i].events.Count; v++)
+            for (int v = 0; v < serializedDelegateEventPairs[i].events.Length; v++)
             {
                 serializedDelegateEventPairs[i].events[v].Subscribe(this);
             }
@@ -23,7 +23,7 @@ public class DelegateEventListener : EventListenerBase
     {
         for (int i = 0; i < serializedDelegateEventPairs.Length; i++)
         {
-            for (int v = 0; v < serializedDelegateEventPairs[i].events.Count; v++)
+            for (int v = 0; v < serializedDelegateEventPairs[i].events.Length; v++)
             {
                 serializedDelegateEventPairs[i].events[v].UnSubscribe(this);
             }
@@ -36,11 +36,14 @@ public class DelegateEventListener : EventListenerBase
 
         for(int i = 0; i < serializedDelegateEventPairs.Length; i++)
         {
-            for(int v = 0; v < serializedDelegateEventPairs[i].events.Count; v++)
+            for(int v = 0; v < serializedDelegateEventPairs[i].events.Length; v++)
             {
                 if(serializedDelegateEventPairs[i].events[v] == callingEvent)
                 {
-                    serializedDelegateEventPairs[i].serializedDelegates.Invoke();
+                    for(int z = 0; z < serializedDelegateEventPairs[i].serializedDelegates.Length; z++)
+                    {
+                        serializedDelegateEventPairs[i].serializedDelegates[z].Execute();
+                    }
                 }
             }
         }
@@ -50,6 +53,6 @@ public class DelegateEventListener : EventListenerBase
 [System.Serializable]
 public struct SerializedDelegateEventPairs
 {
-    public UnityEvent serializedDelegates;
-    public List<EventObject> events;
+    public ActionBase[] serializedDelegates;
+    public EventObject[] events;
 }
