@@ -48,6 +48,17 @@ public class DelegateEventListener : EventListenerBase
             }
         }
     }
+
+    private void Update()
+    {
+        for(int i = 0; i < eventActions.Count; i++)
+        {
+            for(int v = 0; v < eventActions[i].actions.Count; v++)
+            {
+                eventActions[i].actions[v].Update();
+            }
+        }
+    }
 }
 
 [System.Serializable]
