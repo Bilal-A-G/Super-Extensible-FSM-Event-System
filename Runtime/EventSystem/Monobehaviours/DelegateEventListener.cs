@@ -59,6 +59,17 @@ public class DelegateEventListener : EventListenerBase
             }
         }
     }
+
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < eventActions.Count; i++)
+        {
+            for (int v = 0; v < eventActions[i].actions.Count; v++)
+            {
+                eventActions[i].actions[v].FixedUpdate();
+            }
+        }
+    }
 }
 
 [System.Serializable]

@@ -10,4 +10,9 @@ public abstract class ActionBase : ScriptableObject
     {
         return;
     }
+
+    public virtual void FixedUpdate()
+    {
+        return;
+    }
 }
