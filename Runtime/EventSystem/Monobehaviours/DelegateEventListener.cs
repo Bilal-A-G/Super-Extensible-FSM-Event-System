@@ -55,7 +55,7 @@ public class DelegateEventListener : EventListenerBase
         {
             for(int v = 0; v < eventActions[i].actions.Count; v++)
             {
-                eventActions[i].actions[v].Update();
+                eventActions[i].actions[v].UpdateLoop(parentObject);
             }
         }
     }
@@ -66,7 +66,7 @@ public class DelegateEventListener : EventListenerBase
         {
             for (int v = 0; v < eventActions[i].actions.Count; v++)
             {
-                eventActions[i].actions[v].FixedUpdate();
+                eventActions[i].actions[v].FixedUpdateLoop(parentObject);
             }
         }
     }

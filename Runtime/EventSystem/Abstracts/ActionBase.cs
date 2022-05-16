@@ -6,12 +6,12 @@ public abstract class ActionBase : ScriptableObject
 {
     public abstract void Execute(GameObject callingObject);
 
-    public virtual void Update()
+    public virtual void UpdateLoop(GameObject callingObject)
     {
         return;
     }
 
-    public virtual void FixedUpdate()
+    public virtual void FixedUpdateLoop(GameObject callingObject)
     {
         return;
     }
